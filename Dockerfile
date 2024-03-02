@@ -62,6 +62,8 @@ COPY --from=vorbis-builder $INSTALL_DIR $INSTALL_DIR
 FROM ffmpeg-base AS ffmpeg-builder
 COPY build/ffmpeg.sh /src/build.sh
 RUN bash -x /src/build.sh \
+      --disable-swscale \
+      --disable-postproc \
       --disable-encoders \
       --enable-encoder=pcm_s16le \
       --disable-decoders \
