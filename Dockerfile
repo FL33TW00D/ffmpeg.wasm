@@ -65,14 +65,14 @@ RUN bash -x /src/build.sh \
     --disable-everything\
     --disable-network\
     --disable-autodetect\
-    --disable-postproc\
     --enable-small\
-    --enable-muxer=wav,s16le\
+    --enable-muxer=pcm_s16le\
     --enable-encoder=pcm_s16le \
+    --enable-parser=aac,flac,vorbis\
     --enable-decoder=aac,flac,mp3,pcm_s16le,wav,opus,vorbis\
     --enable-demuxer=mov,m4v,matroska,webm,aac,flac,wav,mp3,ogg\
     --enable-protocol=file\
-    --enable-filter=aresample
+    --enable-filter=aresample,anull,anullsrc
 
 # Build ffmpeg.wasm
 FROM ffmpeg-builder AS ffmpeg-wasm-builder

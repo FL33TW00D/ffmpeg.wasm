@@ -18,14 +18,14 @@ CONF_FLAGS=(
   -Llibavformat 
   -Llibavutil 
   -Llibswresample 
-  -Llibswscale
+  -Llibswscale 
   -lavcodec 
   -lavdevice 
   -lavfilter 
   -lavformat 
   -lavutil 
   -lswresample 
-  -lswscale
+  -lswscale 
   -Wno-deprecated-declarations 
   $LDFLAGS 
   -sWASM_BIGINT                            # enable big int support
