@@ -62,17 +62,20 @@ COPY --from=vorbis-builder $INSTALL_DIR $INSTALL_DIR
 FROM ffmpeg-base AS ffmpeg-builder
 COPY build/ffmpeg.sh /src/build.sh
 RUN bash -x /src/build.sh \
-    --disable-everything\
-    --disable-network\
-    --disable-autodetect\
-    --enable-small\
-    --enable-muxer=pcm_s16le\
-    --enable-encoder=pcm_s16le \
-    --enable-parser=aac,flac,vorbis\
-    --enable-decoder=aac,flac,mp3,pcm_s16le,wav,opus,vorbis\
-    --enable-demuxer=mov,m4v,matroska,webm,aac,flac,wav,mp3,ogg\
-    --enable-protocol=file\
-    --enable-filter=aresample,anull,anullsrc
+      --disable-encoders \
+      --enable-encoder=pcm_s16le \
+      --disable-decoders \
+      --enable-decoder=aac,flac,mp3,pcm_s16le,wav,opus,vorbis\
+      --disable-parsers \
+      --enable-parser=aac,flac,vorbis\
+      --disable-muxers \
+      --enable-muxer=pcm_s16le\
+      --disable-demuxers \
+      --enable-demuxer=mov,m4v,matroska,webm,aac,flac,wav,mp3,ogg\
+      --enable-small \
+      --enable-libmp3lame \
+      --enable-libvorbis \
+      --enable-libopus 
 
 # Build ffmpeg.wasm
 FROM ffmpeg-builder AS ffmpeg-wasm-builder
